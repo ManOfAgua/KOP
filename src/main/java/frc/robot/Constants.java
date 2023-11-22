@@ -24,6 +24,7 @@ public final class Constants {
 
 
     public static double driveSpeed = 0.6,
+    
     kCountsPerRev = 2048, kGearRatio = 10.71, kWheelRadiusInches = 3;
 
   }
@@ -35,8 +36,7 @@ public static class PIDConstants
 
     hardKP = 0.33, hardKI = 0.082, hardKD = 0.015,
 
-    turnKP = 0.6, turnKI = .77, turnKD = .042;
-
+    turnKP = .6, turnKI = .77, turnKD = .042;
 
     // high kp mid ki mid kd  Aggressive
     // mid kp low ki low kd Mid Speed

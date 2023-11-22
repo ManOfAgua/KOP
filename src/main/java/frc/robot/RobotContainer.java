@@ -48,11 +48,14 @@ public class RobotContainer {
 
   SendableChooser<Command> chooser = new SendableChooser<>();
 
-  public RobotContainer() {
+  public RobotContainer() 
+  {
     driveSub.setDefaultCommand(jesseMove);
 
     JoystickButton stopButton = new JoystickButton(jesse, 2);
+
     JoystickButton turnButton = new JoystickButton(jesse, 4);
+
     turnButton.onTrue(turnRight.until(stopButton));
 
     chooser.addOption("No Auto", null);
@@ -62,48 +65,30 @@ public class RobotContainer {
 
   }
 
-  Command stage1 = new SequentialCommandGroup(new DriveEncoderCommand(2.8, driveSub).andThen(
+  Command stage1 = new SequentialCommandGroup(new DriveEncoderCommand(3.47, driveSub).andThen(
       () -> System.out.println("\n\nStage 1 Finished ")), new WaitCommand(.25));
 
-  SequentialCommandGroup stage2 = new SequentialCommandGroup(new DriveEncoderCommand(2, driveSub).andThen(
+  SequentialCommandGroup stage2 = new SequentialCommandGroup(new DriveEncoderCommand(3.47, driveSub).andThen(
       () -> System.out.println("Stage 2 Finished")), new WaitCommand(.25));
 
-  SequentialCommandGroup stage3 = new SequentialCommandGroup(new DriveEncoderCommand(2.36, driveSub).andThen(
-      () -> System.out.println("Stage 3 Finished")), new WaitCommand(.25));
 
-  SequentialCommandGroup stage4 = new SequentialCommandGroup(new TurnPIDCommand(-0.58, driveSub).andThen(
-      () -> System.out.println("Stage 4 Finished")), new WaitCommand(.25));
-
-  SequentialCommandGroup stage5 = new SequentialCommandGroup(new DriveEncoderHardComand(1.4, driveSub).andThen(
-      () -> System.out.println("Stage 5 Finished")), new WaitCommand(.25));
-
-  SequentialCommandGroup stagestage1 = new SequentialCommandGroup(stage1, stage2, stage3, stage4, stage5);
+  SequentialCommandGroup stagestage1 = new SequentialCommandGroup(stage1, stage2);
 
 
 Command returnstage1 = new SequentialCommandGroup(new TurnPIDCommand(-0.58, driveSub).andThen(
   () -> System.out.println("ReturnStage 1 Finished")), new WaitCommand(.5));
 
-  SequentialCommandGroup returnstage2 = new SequentialCommandGroup(new TurnPIDCommand(-0.58, driveSub).andThen(
+  SequentialCommandGroup returnstage2 = new SequentialCommandGroup(new TurnPIDCommand(-0.62, driveSub).andThen(
   () -> System.out.println("ReturnStage 2 Finished")), new WaitCommand(.5));
 
-  SequentialCommandGroup returnstage3 = new SequentialCommandGroup(new DriveEncoderHardComand(1.4, driveSub).andThen(
-  () -> System.out.println("ReturnStage 3 Finished")), new WaitCommand(.25));
+  SequentialCommandGroup returnstage3 = new SequentialCommandGroup(new DriveEncoderCommand(3.47, driveSub).andThen(
+    () -> System.out.println("\n\nStage 1 Finished ")), new WaitCommand(.25));
 
-  SequentialCommandGroup returnstage4 = new SequentialCommandGroup(new TurnPIDCommand(0.215, driveSub).andThen(
-  () -> System.out.println("ReturnStage 4 Finished")), new WaitCommand(.5));
+SequentialCommandGroup returnstage4 = new SequentialCommandGroup(new DriveEncoderCommand(3.47, driveSub).andThen(
+    () -> System.out.println("Stage 2 Finished")), new WaitCommand(.25));
 
-SequentialCommandGroup returnstage5 = new SequentialCommandGroup(new DriveEncoderCommand(2.36, driveSub).andThen(
-  () -> System.out.println("\n\nReturnStage 5 Finished ")), new WaitCommand(.25));
 
-SequentialCommandGroup returnstage6 = new SequentialCommandGroup(new DriveEncoderCommand(2.36, driveSub).andThen(
-  () -> System.out.println("ReturnStage 6 Finished")), new WaitCommand(.25));
-
-SequentialCommandGroup returnstage7 = new SequentialCommandGroup(new DriveEncoderCommand(2, driveSub).andThen(
-  () -> System.out.println("ReturnStage 7 Finished")), new WaitCommand(.25));
-
-SequentialCommandGroup stagestage2 = new SequentialCommandGroup(returnstage1, returnstage2, returnstage3, returnstage4, returnstage5, 
-returnstage6, returnstage7);
-
+SequentialCommandGroup stagestage2 = new SequentialCommandGroup(returnstage1, returnstage2, returnstage3, returnstage4);
 
 
 SequentialCommandGroup autofinal = new SequentialCommandGroup(stagestage1, stagestage2);
